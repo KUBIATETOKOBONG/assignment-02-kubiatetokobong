@@ -3,6 +3,7 @@
 // ========================
 
 /**
+<<<<<<< HEAD
  * Challenge - 1
  *
  * Calculate and return the sum of the numbers between 1 and a destination.
@@ -179,3 +180,112 @@ export function doubleTheValues(arrayOfNumbers) {
 // ========================
 // DO NOT REMOVE THE EXPORT KEYWORDS
 // ========================
+=======
+ * Challenge 1
+ * Sum 1..destination (inclusive).
+ */
+export function sumOfNumbersTo(destination) {
+  if (!Number.isFinite(destination) || destination < 1) return 0
+  return (destination * (destination + 1)) / 2
+}
+
+/**
+ * Challenge 2
+ * Even numbers 0..destination → { count, sum, arrayOfEvenNumbers }.
+ */
+export function evenNumbersWithin(destination) {
+  const arrayOfEvenNumbers = []
+  if (!Number.isFinite(destination) || destination < 0) {
+    return { count: 0, sum: 0, arrayOfEvenNumbers }
+  }
+  for (let i = 0; i <= destination; i += 1) {
+    if ((i & 1) === 0) arrayOfEvenNumbers.push(i)
+  }
+  const sum = arrayOfEvenNumbers.reduce((a, b) => a + b, 0)
+  return { count: arrayOfEvenNumbers.length, sum, arrayOfEvenNumbers }
+}
+
+/**
+ * Challenge 3
+ * Celsius array → Fahrenheit array, rounded to nearest integer.
+ */
+export function celsiusToFahrenheit(arrayOfNumbers) {
+  if (!Array.isArray(arrayOfNumbers)) return []
+  return arrayOfNumbers.map((c) => Math.round((c * 9) / 5 + 32))
+}
+
+/**
+ * Challenge 4
+ * Odd numbers 1..destination → { count, sum, arrayOfOddNumbers }.
+ */
+export function oddNumbersWithin(destination) {
+  const arrayOfOddNumbers = []
+  if (!Number.isFinite(destination) || destination < 1) {
+    return { count: 0, sum: 0, arrayOfOddNumbers }
+  }
+  for (let i = 1; i <= destination; i += 1) {
+    if ((i & 1) === 1) arrayOfOddNumbers.push(i)
+  }
+  const sum = arrayOfOddNumbers.reduce((a, b) => a + b, 0)
+  return { count: arrayOfOddNumbers.length, sum, arrayOfOddNumbers }
+}
+
+/**
+ * Challenge 5
+ * Multiples of factor from array → { count, sum, arrayOfMultiples }.
+ */
+export function findMultiples(arrayOfNumbers, factor) {
+  const arrayOfMultiples = Array.isArray(arrayOfNumbers) && Number.isFinite(factor) && factor !== 0
+    ? arrayOfNumbers.filter((n) => Number.isFinite(n) && n % factor === 0)
+    : []
+  const sum = arrayOfMultiples.reduce((a, b) => a + b, 0)
+  return { count: arrayOfMultiples.length, sum, arrayOfMultiples }
+}
+
+/**
+ * Challenge 6
+ * Factorial for each number in array.
+ * factorial(0)=1; negatives or non-integers → NaN.
+ */
+export function calculateFactorials(arrayOfNumbers) {
+  if (!Array.isArray(arrayOfNumbers)) return []
+  const fact = (n) => {
+    if (!Number.isInteger(n) || n < 0) return NaN
+    if (n === 0 || n === 1) return 1
+    let acc = 1
+    for (let i = 2; i <= n; i += 1) acc *= i
+    return acc
+  }
+  return arrayOfNumbers.map(fact)
+}
+
+/**
+ * Challenge 7
+ * Primes from array → { count, sum, arrayOfPrimes }.
+ */
+export function findPrimeNumbers(arrayOfNumbers) {
+  if (!Array.isArray(arrayOfNumbers)) {
+    return { count: 0, sum: 0, arrayOfPrimes: [] }
+  }
+  const isPrime = (n) => {
+    if (!Number.isInteger(n) || n < 2) return false
+    if (n === 2) return true
+    if (n % 2 === 0) return false
+    const limit = Math.floor(Math.sqrt(n))
+    for (let i = 3; i <= limit; i += 2) if (n % i === 0) return false
+    return true
+  }
+  const arrayOfPrimes = arrayOfNumbers.filter(isPrime)
+  const sum = arrayOfPrimes.reduce((a, b) => a + b, 0)
+  return { count: arrayOfPrimes.length, sum, arrayOfPrimes }
+}
+
+/**
+ * Challenge 8
+ * Double each value in array.
+ */
+export function doubleTheValues(arrayOfNumbers) {
+  if (!Array.isArray(arrayOfNumbers)) return []
+  return arrayOfNumbers.map((n) => n * 2)
+}
+>>>>>>> 853bc9e (Complete challenges 1-8 with tests passing)
